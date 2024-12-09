@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Home from "./Components/Home";
-import Header from "./Components/Header";
+import App from "./App";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <div>
-    <Home />
-    <Header />
+    <App />
   </div>
 );
