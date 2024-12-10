@@ -17,7 +17,14 @@ export default class Header extends Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <NavLink className="ms-auto d-flex gap-3">
-                <Button variant="light">Lather Jacket</Button>
+                <Button
+                  variant="light"
+                  onClick={() => {
+                    this.props.increment();
+                  }}
+                >
+                  Lather Jacket
+                </Button>
                 <Button variant="light">Pink Shirt</Button>
                 <Button variant="light">Wide leg Jeans</Button>
                 <Button variant="light">Black Blouse</Button>
@@ -33,7 +40,12 @@ export default class Header extends Component {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <TopButton reset={this.props.reset} empty={this.props.empty} />
+        <TopButton
+          reset={this.props.reset}
+          empty={this.props.empty}
+          mode={this.props.mode}
+          modeToggle={this.props.modeToggle}
+        />
       </>
     );
   }

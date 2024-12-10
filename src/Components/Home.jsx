@@ -12,9 +12,9 @@ export default class Home extends Component {
             className="text-bg-dark d-flex gap-5 justify-content-evenly"
           >
             <h2 className="ms-3">{i}</h2>
-            <h2>{data.name}</h2>
-            <h2>Price: {data.price}</h2>
-            <h2>Items: {data.items}</h2>
+            <h3>{data.name}</h3>
+            <h3>Price: {data.price}</h3>
+            <h3>Items: {data.items}</h3>
             <div className="d-flex gap-3 m-2">
               <Button
                 variant="success"
@@ -41,10 +41,10 @@ export default class Home extends Component {
                 Delete
               </Button>
             </div>
-            <h2>Total Price: {data.price * data.items} </h2>
+            <h3>Total Price: {data.price * data.items} </h3>
+            <h4>Total: {this.props.total(data)}</h4>
           </div>
         ))}
-        <h1>Total: {this.props.total}</h1>
       </div>
     );
   }

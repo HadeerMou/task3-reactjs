@@ -6,15 +6,9 @@ import { MdOutlineWbSunny } from "react-icons/md";
 export default class TopButton extends Component {
   render() {
     return (
-      <div className="mt-2 w-100 text-center ">
-        <Button
-          className="bg"
-          variant="dark"
-          onClick={() => {
-            this.className = "bg";
-          }}
-        >
-          <FaMoon />
+      <div className="m-2 text-center">
+        <Button variant="dark" onClick={this.props.modeToggle}>
+          {this.props.mode ? <FaMoon /> : <MdOutlineWbSunny />}
         </Button>
 
         <Button variant="dark" onClick={this.props.empty}>

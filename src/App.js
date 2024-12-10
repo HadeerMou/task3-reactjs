@@ -12,6 +12,20 @@ export default class App extends Component {
       { id: 4, name: "Satin Skirt", price: 1000, items: 22 },
     ],
   };
+
+  stateToggle = {
+    isDarkMode: true, // Initial mode is light
+  };
+
+  toggleDarkMode = () => {
+    this.setState((prevState) => {
+      const newMode = !prevState.isDarkMode;
+      // Apply the appropriate class to the document body
+      document.body.className = newMode ? "light-mode" : "dark-mode";
+      return { isDarkMode: newMode };
+    });
+  };
+
   increment = (data) => {
     const incrementProduct = this.state.products.map((product) => {
       if (data.id === product.id) {
@@ -68,12 +82,19 @@ export default class App extends Component {
     });
   };
 
-  total = (data) => {
-    const totalItems = this.state.products.map((product) => {
-      if (data.id === product.id) {
-        return product.items * product.price;
-      }
-      return totalItems;
+  total = () => {
+    const totalPrice = this.state.products.reduce((sum, product) => {
+      return sum + product.price * product.items;
+    }, 0);
+    return totalPrice;
+  };
+
+  increment0 = (data) => {
+    const incrementProduct = this.state.products.map((product) => {
+      return product[0].items++;
+    });
+    this.setState({
+      products: incrementProduct,
     });
   };
 
@@ -85,6 +106,9 @@ export default class App extends Component {
           reset={this.reset}
           empty={this.empty}
           increment={this.increment}
+          increment0={this.increment0}
+          mode={this.stateToggle.isDarkMode}
+          modeToggle={this.toggleDarkMode}
         />
         <Home
           products={this.state.products}
