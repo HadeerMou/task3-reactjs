@@ -38,15 +38,14 @@ export default class App extends Component {
     });
   };
   decrement = (data) => {
-    const decrementProduct = this.state.products.map((product) => {
-      if (data.id === product.id) {
-        product.items--;
-        if (product.items === 0) {
-          console.log(this.delete(data));
+    const decrementProduct = this.state.products
+      .map((product) => {
+        if (data.id === product.id) {
+          product.items--;
         }
-      }
-      return product;
-    });
+        return product;
+      })
+      .filter((product) => product.items > 0);
     this.setState({
       products: decrementProduct,
     });
@@ -89,13 +88,11 @@ export default class App extends Component {
     return totalPrice;
   };
 
-  increment0 = (data) => {
-    const incrementProduct = this.state.products.map((product) => {
-      return product[0].items++;
-    });
-    this.setState({
-      products: incrementProduct,
-    });
+  itemsNo = () => {
+    return this.state.products.reduce(
+      (total, product) => total + product.items,
+      0
+    );
   };
 
   render() {
@@ -106,9 +103,9 @@ export default class App extends Component {
           reset={this.reset}
           empty={this.empty}
           increment={this.increment}
-          increment0={this.increment0}
           mode={this.stateToggle.isDarkMode}
           modeToggle={this.toggleDarkMode}
+          itemsNo={this.itemsNo}
         />
         <Home
           products={this.state.products}
